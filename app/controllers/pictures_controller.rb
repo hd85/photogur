@@ -1,7 +1,7 @@
 class PicturesController < ApplicationController
 
   def index
-    @pictures = Picture.all
+    @pictures = Picture.most_recent_five
   end
 
   def show
@@ -28,7 +28,7 @@ class PicturesController < ApplicationController
   def update
     @picture = Picture.find(params[:id])
 
-    if @picture.updat_attributes(picture_params)
+    if @picture.update_attributes(picture_params)
       redirect_to "/pictures/#{@picture.id}"
     else
       render :edit
